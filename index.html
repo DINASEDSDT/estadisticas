@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>DINASED - SISTEMA ESTADÍSTICO DE HOMICIDIOS INTENCIONALES</title>
   
-  <!-- Ícono para la pestaña del navegador -->
-  <link rel="icon" href="https://lh3.googleusercontent.com/d/1SACC-s80T33g-X2EaQ4r51JTE-Kt1RY-" type="image/png">
+  <!-- Ícono para la pestaña del navegador apuntando al archivo subido en GitHub -->
+  <link rel="icon" href="DINASED_ESCUDO.png" type="image/png">
 
   <style>
     * {
@@ -20,17 +20,56 @@
       overflow: hidden;
       background-color: #08111e;
     }
+    
+    /* Contenedor de respaldo visual si el iframe tarda en conectar */
+    .loading-fallback {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #08111e;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      z-index: 1;
+    }
+
+    .loading-fallback img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
     iframe {
+      position: relative;
       width: 100%;
       height: 100%;
       border: none;
       display: block;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
 
-  <!-- iFrame enmascarado cargando tu App Script -->
+  <!-- Elemento visual opcional mientras carga la app -->
+  <div class="loading-fallback">
+    <img src="DINASED_ESCUDO.png" alt="Escudo DINASED" onerror="this.style.display='none'">
+    <p>Cargando Sistema Estadístico DINASED...</p>
+  </div>
+
+  <!-- iFrame principal conectado a tu Google Apps Script -->
   <iframe 
     src="https://script.google.com/macros/s/AKfycby6MrGNAxRTQ_NLbE4rQDD25pP9WsLW8XMVxgWMSM5I8BcYVd-KBZ26A5cr-8UQN_UwDw/exec" 
     allow="fullscreen; clipboard-read; clipboard-write" 
